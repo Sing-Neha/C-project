@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+<body>
+    <div class="container-flued">
+    #include <stdio.h><br>
+        #include<conio.h><br>
+        #include <stdlib.h><br>
+        #include <string.h><br>
+        #include"mind.h" <br>
+        
+        struct Expense {<br>
+            int id;<br>
+            char date[20];<br>
+            char description[100];<br>
+            float amount;<br>
+        };  <br>
+             
+        float Your_Account_Balance = 100000.0;<br>
+        char uname[] = {"mind"}, upass[] = {"1234"};<br>
+        
+        
+        // Function prototypes<br>
+        void profile();<br>
+        void login();<br>
+        void addExpense(struct Expense expenses[], int *expenseCount);<br>
+        void displayExpenses(struct Expense expenses[], int expenseCount);<br>
+        void searchExpensesByDate(struct Expense expenses[], int expenseCount, char searchDate[20]); <br>
+        void updateExpense(struct Expense expenses[], int expenseCount);<br>
+        void deleteExpense(struct Expense expenses[], int *expenseCount, int idToDelete);<br>
+        
+        int main() {<br>
+        
+        
+            
+        printf("\n\n\t\t\t\t\t\t\t  \033[1;32m======MIND_INSTALLER_OF_KSS=====\033[0m\n\n");<br>
+        
+              login();
+              <br>
+            struct Expense expenses[100]; // store expenses<br>
+            int expenseCount = 0;         // Number of records<br>
+            int choice;
+        
+            while (1) {<br>
+                printf("\n\n\n\t\t\t\t\t\t                    PETTY CASH SYSTEM\n");<br>
+                printf("\t\t\t\t\t\t--------------------------------------------------------------\n");<br>
+                printf("\t\t\t\t\t\t1. Add Your Expense\n");<br>
+                printf("\t\t\t\t\t\t2. Display Your Expenses\n");<br>
+                printf("\t\t\t\t\t\t3. Search Expenses by Date\n");<br>
+                printf("\t\t\t\t\t\t4. Update Your Expense\n");<br>
+                printf("\t\t\t\t\t\t5. Delete Your Expense\n");<br>
+                printf("\t\t\t\t\t\t6. Team Profile\n");<br>
+                printf("\t\t\t\t\t\t7. Exit program\n");<br>
+                
+                
+                printf("\033[1;32m\t\t\t\t\t\tEnter your Choice which you want to choose: \033[0m");<br>
+                scanf("%d", &choice);<br>
+                system("cls");<br>
+        
+                switch (choice) {<br>
+                
+                    case 1:<br>
+                        printf("\n\n\t\t\t\t\t\t\t  \033[1;32m======MIND_INSTALLER_OF_KSS=====\033[0m\n\n");<br>
+                        printf("\n\n\n\t\t\t 	Enter A Record:\n\n\n");<br>
+                        addExpense(expenses, &expenseCount);<br>
+                        break;<br>
+                    case 2:<br>
+                     printf("\n\n\t\t\t\t\t\t\t  \033[1;32m======MIND_INSTALLER_OF_KSS=====\033[0m\n\n");<br>
+                     printf("\n\n\n\t\t\t       Display Expenses :\n\n\n");<br>
+                        displayExpenses(expenses, expenseCount);<br>
+                        break;<br>
+                    case 3: <br>
+                    printf("\n\n\t\t\t\t\t\t\t  \033[1;32m======MIND_INSTALLER_OF_KSS=====\033[0m\n\n"); <br> 
+                    
+                    {<br>
+                        char searchDate[20];<br>
+                        printf("\n\n\t\t\t\t\t\t\t  \033[1;32m======MIND_INSTALLER_OF_KSS=====\033[0m\n\n");<br>
+                        printf("\t\t\t\t\t\tEnter date for Search (e.g., DD/MM/YYYY): ");<br>
+                        scanf("%s", searchDate);<br>
+                        searchExpensesByDate(expenses, expenseCount, searchDate);<br>
+                        break;<br>
+                    }<br>
+                    case 4:<br>
+                    printf("\n\n\t\t\t\t\t\t\t  \033[1;32m======MIND_INSTALLER_OF_KSS=====\033[0m\n\n");<br>
+                        updateExpense(expenses, expenseCount);<br>
+                        break;<br>
+                    case 5: {<br>
+                        int idToDelete;<br>
+                        printf("\n\n\t\t\t\t\t\t\t  \033[1;32m======MIND_INSTALLER_OF_KSS=====\033[0m\n\n");<br>
+                        printf("\t\t\t\t\t\tEnter the ID of the expense to delete: ");<br>
+                        scanf("%d", &idToDelete);<br>
+                        deleteExpense(expenses, &expenseCount, idToDelete);<br>
+                        break;<br>
+                         case 6:<br>
+                        profile();<br>
+                        break;<br>
+                    }<br>
+                    case 7:<br>
+                        printf("\t\t\t\t\t\t Exit program.\n\n");<br>
+                        printf("\t\t\t\t\t \033[1;32m------ Thanks To All ------ \033[0m");<br>
+                        return 0;<br>
+                    default:<br>
+                        printf("\t\t\t\t\t\tInvalid choice.\n");<br>
+                }<br>
+            }<br>
+            return 0;<br>
+            
+        }<br>
+        //profile fuction<br>
+        
+        
+        
+        //Login function<br>
+        void login()<br>
+        {
+          char ename[20], epass[20];<br>
+            int n, x;<br>
+        printf("\t\t\t\t\t\t\t\tEnter your user name:");<br>
+          gets(ename); <br>
+          printf("\n\t\t\t\t\t\t\t\tEnter your password:");<br>
+            n=strlen(upass);<br>
+          for(x=0;x<n;x++)<br>
+          {<br>
+           epass[x]=getch();<br>
+           printf("*");<br>
+          }<br>
+          
+          epass[x]='\0';<br>
+          if(strcmp(uname,ename)==0 && strcmp(upass,epass)==0)<br>
+            printf("\n\n\t\t\t\t\t\t\t\033[1;32m-----Welcome to my software-----\033[0m");<br>
+            else
+            printf("\n\n\t\t\t\t\t\t\t\t \033[1;31m ----Invalid userid and password---\033[0m");<br>
+          
+        
+        }<br>
+        
+        // Add an expense<br>
+        void addExpense(struct Expense expenses[], int *expenseCount) {<br>
+            if (*expenseCount >= 100) {<br>
+                printf("\t\t\t\t\t\tExpense limit reached. Cannot add more expenses.\n");<br>
+                return;<br>
+            }<br>
+            struct Expense newExpense;<br>
+            newExpense.id = *expenseCount + 1;<br>
+            printf("\t\t\t\t\t\tEnter date (DD/MM/YYYY): ");<br>
+            scanf("%s", newExpense.date);<br>
+            printf("\t\t\t\t\t\tEnter description: ");<br>
+            scanf(" %[^\n]", newExpense.description);<br>
+            printf("\t\t\t\t\t\tEnter amount: ");<br>
+            scanf("%f", &newExpense.amount);<br>
+        
+            Your_Account_Balance -= newExpense.amount;<br>
+        
+            expenses[*expenseCount] = newExpense;<br>
+            (*expenseCount)++;<br>
+            printf("\t\t\t\t\t\t \033[1;32m Expense added successfully.\033[0m\n");<br>
+        }<br>
+        
+        // Display expenses<br>
+        void displayExpenses(struct Expense expenses[], int expenseCount) {<br>
+            if (expenseCount == 0) {<br>
+                printf("\t\t\t\t\t\t \033[1;31mNo expenses recorded.\033[0m\n");<br>
+                return;<br>
+            }<br>
+            printf("\t\t\t\t\t\tExpense ID |    Date          | Description             | Amount\n");<br>
+              int i;<br>
+            printf("\t\t\t\t\t\t--------------------------------------------------------------\n");<br>
+            for ( i = 0; i < expenseCount; i++) {<br>
+                printf("\t\t\t\t\t\t%-10d | %-10s | %20s | %.2f\n", expenses[i].id,<br>
+                 expenses[i].date, expenses[i].description, expenses[i].amount);<br>
+                 
+            }<br>
+            printf("\t\t\t\t\t\t--------------------------------------------------------------\n");<br>
+            printf("\t\t\t\t\t\t Petty Cash Balance: %.2f\n", Your_Account_Balance);<br>
+        }<br>
+        
+        // Search expenses by date<br>
+        void searchExpensesByDate(struct Expense expenses[], int expenseCount, char searchDate[20]) {<br>
+            if (expenseCount == 0) {<br>
+                printf("\t\t\t\t\t\t No expenses recorded.\n");<br>
+                return;<br>
+            }<br>
+            float totalAmount = 0.0;<br>
+            int found = 0;<br>
+        
+            printf("\t\t\t\t\t\tExpense ID | Date       | Description         | Amount\n");<br>
+            printf("\t\t\t\t\t\t--------------------------------------------------\n");<br>
+             int i;<br>
+            for (i = 0; i < expenseCount; i++) {<br>
+                if (strcmp(expenses[i].date, searchDate) == 0) {<br>
+                    printf("\t\t\t\t\t\t%10d | %10s | %20s | %.2f\n", expenses[i].id,<br>
+                     expenses[i].date,expenses[i].description, expenses[i].amount);<br>
+                     
+                    totalAmount += expenses[i].amount;<br>
+                    found = 1;<br>
+                }<br>
+            }<br>
+        
+            printf("\t\t\t\t\t--------------------------------------------------------------\n");<br>
+        
+            if (found) {<br>
+                printf("\t\t\t\t\t\tTotal amount for %s: %.2f\n", searchDate, totalAmount);<br>
+            } else {<br>
+                printf("\t\t\t\t\t\tNo records found for %s.\n", searchDate);<br>
+            }<br>
+        }<br>
+        
+        // Update an expense<br>
+        void updateExpense(struct Expense expenses[], int expenseCount) {<br>
+            int idToUpdate;<br>
+            printf("\t\t\t\t\t\tEnter the ID of the expense to update: ");<br>
+            scanf("%d", &idToUpdate);<br>
+        
+            if (idToUpdate <= 0 || idToUpdate > expenseCount) {<br>
+                printf("\t\t\t\t\t\t \033[1;31mInvalid expense ID.\033[0m\n");<br>
+                return;<br>
+            }<br>
+        
+            struct Expense *expenseToUpdate = &expenses[idToUpdate - 1];<br>
+        
+            printf("\t\t\t\t\t\tEnter new date (DD/MM/YYYY): ");<br>
+            scanf("%s", expenseToUpdate->date);<br>
+            printf("\t\t\t\t\t\tEnter new description: ");<br>
+            scanf(" %[^\n]", expenseToUpdate->description);<br>
+            printf("\t\t\t\t\t\tEnter new amount: ");<br>
+            scanf("%f", &expenseToUpdate->amount);<br>
+        
+            printf("\t\t\t\t\t\t \033[1;32mExpense updated successfully.\033[0m\n");<br>
+        }<br>
+        
+        // Delete an expense<br>
+        void deleteExpense(struct Expense expenses[], int *expenseCount, int idToDelete) {<br>
+            if (idToDelete <= 0 || idToDelete > *expenseCount) {<br>
+                printf("\t\t\t\t\t\tInvalid expense ID.\n");<br>
+                return;<br>
+            }<br>
+            int i;<br>
+        
+            for ( i = idToDelete - 1; i < *expenseCount - 1; i++) {<br>
+                expenses[i] = expenses[i + 1];<br>
+                
+            }<br>
+        
+            (*expenseCount)--;<br>
+            printf("\t\t\t\t\t\t \033[1;32mExpense deleted successfully.\033[0m\n\n");<br>
+        }<br>
+        
+  <button><a href="mind_h.html">#include mind.h header file source code</a><br>
+  </div></button> <br>
+</body>
+</html>
